@@ -16,11 +16,11 @@
 		// INICIALIZA/CONFIGURA CURL
 		$link = "http://localhost/FrameworkSlim/slim/autenticar/rest.php/".$_POST['login'] ."&" . $_POST['password'];
 		$curl = curl_init($link);
-		// // // CONFIGURA AS OPÇÕES (parâmetros)
-		// curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-		// // INVOCA A URL DO WEBSERVICE
-		// $curl_resposta = curl_exec($curl);
-		// curl_close($curl);
+		// CONFIGURA AS OPÇÕES (parâmetros)
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+		// INVOCA A URL DO WEBSERVICE
+		$curl_resposta = curl_exec($curl);
+		curl_close($curl);
 
 		return $curl_resposta;
 		return "";
@@ -53,10 +53,10 @@
 		}
 
 		// MONTA ARRAY DE DADOS
-		$dados = array('nome' => mb_strtoupper($_POST['nome_post'], 'UTF-8'));
+		$dados = array('nome' => mb_strtoupper($_POST['nome'], 'UTF-8'), 'usuario' => $_POST['usuario'], 'senha' => $_POST['senha']);
 
 		// INICIALIZA/CONFIGURA CURL
-		$curl = curl_init("http://localhost/slim/rest.php/");
+		$curl = curl_init("http://localhost/FrameworkSlim/slim/autenticar/rest.php/");
 		// CONFIGURA AS OPÇÕES (parâmetros)
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($curl, CURLOPT_POST, 'POST');

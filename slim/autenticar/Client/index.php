@@ -97,11 +97,6 @@
 
 							if($dadoJson->msg != null) {
 								echo "<br>$dadoJson->msg";
-							} else {
-								foreach ($dadoJson as $dado)
-								{
-									echo "<br> $dado->nome";
-								}
 							}
 
 						echo "</div>";
@@ -128,11 +123,7 @@
 
 							if($dadoJson->msg != null) {
 								echo "<br>$dadoJson->msg";
-							} else {
-								foreach ($dadoJson as $dado)
-								{
-									echo "<br> $dado->nome";
-								}
+								echo "<br> $dadoJson->nome";
 							}
 
 						echo "</div>";

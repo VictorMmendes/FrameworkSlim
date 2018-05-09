@@ -20,7 +20,13 @@
 		$stmt = $conn->prepare($sql);
 		$stmt->execute();
 
-		echo json_encode($stmt->fetchAll());
+		$nome = $stmt->fetch()['nome'];
+		if($nome == "")
+		{
+			echo json_encode( array('msg' => "[ERRO] falha na autenticacao! ", 'nome' => $nome ));
+		} else {
+			echo json_encode( array('msg' => "[OK] autenticado com Sucesso! ", 'nome' => $nome ));
+		}
 	});
 
 	// POST - Inserir
@@ -28,9 +34,9 @@
 
 		$dadoJson = json_decode( $app->request()->getBody() );
 
-		$nome=$dadoJson[0]->nome;
-		$usuario=$dadoJson[0]->usuario;
-		$senha=$dadoJson[0]->senha;
+		$nome=$dadoJson->nome;
+		$usuario=$dadoJson->usuario;
+		$senha=$dadoJson->senha;
 
 		$sql = "INSERT INTO usuario (nome, usuario, senha) values('$nome', '$usuario', '$senha')";
 		$conn = getConn();
